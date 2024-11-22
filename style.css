@@ -20,14 +20,6 @@ body{
     justify-content: center;
 }
 
-img{
-    height: 1.5rem;
-    padding: .4rem;
-    &:hover{
-        transform: scale(1.2);
-    }
-}
-
 #zonaJuego{
     position: relative;
     background-color: rgb(19, 18, 18);
@@ -331,5 +323,54 @@ kbd{
     }
 }
 
+.githubImg{
+    position: relative;
+    margin-left: 0;
+    height: 1.5rem;
+    padding: .4rem;
+    &:hover{
+        transform: scale(1.2);
+    }
+}
 
+.wrapperImg{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    justify-content: center;
+}
 
+.tooltip{
+    position: absolute;
+    right: -55px;
+    font-size: 18px;
+    background: #fff;
+    color: rgb(10, 199, 4);
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    width: 135px;
+    font-weight: 700;
+    visibility: hidden;
+}
+
+.tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: rgb(10, 199, 4);
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+}
+
+.githubImg:hover + .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    background: rgb(10, 199, 4);
+    color: #f0eaea;
+}

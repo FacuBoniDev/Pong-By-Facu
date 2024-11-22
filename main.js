@@ -86,9 +86,9 @@ class paleta{
 class bola{
     
     x;
-    dx = -15;
+    dx;
     y;
-    dy = -15;
+    dy;
     ancho = 20;
     movimiento;
     velocidadAumentada = false;
@@ -106,6 +106,24 @@ class bola{
         j1.element.classList.remove("vibrate");
     }
 
+    movimientoRandom(){
+        let numeroRandom = Math.floor(Math.random() * 4);
+        switch (numeroRandom){
+            case 0: this.dx = -15;
+                    this.dy = -15;
+                    break;
+            case 1: this.dx = 15;
+                    this.dy = -15;
+                    break;
+            case 2: this.dx = -15;
+                    this.dy = 15;
+                    break;
+            case 3: this.dx = 15;
+                    this.dy = 15;
+                    break;
+        }
+    }
+
     resetPosicion(){
         this.x = (document.body.clientWidth + this.ancho) / 2;
         this.element.style.left = this.x+"px";
@@ -114,6 +132,9 @@ class bola{
     }
 
     mover(){
+
+        this.movimientoRandom()
+
         if(!this.movimiento){
         this.movimiento = setInterval(() => {
 
