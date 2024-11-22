@@ -151,3 +151,185 @@ kbd{
     color: aliceblue;
     font-size: 1.1rem;
 }
+
+.fuego {
+    position: absolute;
+    width: 20px; /* Tamaño de la pelota */
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, yellow, orange);
+    border: 1px solid orange; /* Contorno más sutil */
+    box-shadow: 0 0 10px rgba(255, 150, 50, 0.6), 
+                0 0 20px rgba(255, 120, 0, 0.4);
+    animation: softGlow 0.2s infinite alternate;
+}
+
+.fuego::before, .fuego::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px; /* Más pequeño */
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 200, 100, 0.5), transparent);
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+    animation: gentleFlame 0.6s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+.fuego::after {
+    width: 40px; /* Más pequeño */
+    height: 40px;
+    background: radial-gradient(circle, rgba(255, 150, 50, 0.3), transparent);
+    animation-duration: 0.8s;
+}
+
+/* Chispas más sutiles */
+.fuego::after::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: rgba(255, 200, 100, 0.8);
+    box-shadow: 
+        8px -8px rgba(255, 180, 80, 0.6), 
+        -10px 4px rgba(255, 160, 50, 0.4), 
+        5px 10px rgba(255, 140, 40, 0.3);
+    animation: subtleSparks 1.5s infinite ease-in-out;
+}
+
+/* Animaciones */
+@keyframes softGlow {
+    from {
+        box-shadow: 0 0 10px rgba(255, 150, 50, 0.6), 
+                    0 0 20px rgba(255, 120, 0, 0.4);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(255, 180, 80, 0.7), 
+                    0 0 25px rgba(255, 140, 0, 0.5);
+    }
+}
+
+@keyframes gentleFlame {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.4;
+    }
+}
+
+@keyframes subtleSparks {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-10px, 10px) scale(1.2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(10px, -10px) scale(1);
+        opacity: 0;
+    }
+}
+
+
+.fuegoSuper {
+    position: absolute;
+    width: 20px; /* Tamaño de la pelota */
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, yellow, orange);
+    border: 2px solid red; /* Contorno para destacar la bola */
+    box-shadow: 0 0 15px rgba(255, 100, 0, 0.8), 
+                0 0 25px rgba(255, 50, 0, 0.6);
+    animation: superGlow 0.15s infinite alternate;
+}
+
+.fuegoSuper::before, .fuegoSuper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px; /* Reducido */
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 165, 0, 0.7), transparent);
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+    animation: intenseFlame 0.4s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+.fuegoSuper::after {
+    width: 50px; /* Reducido */
+    height: 50px;
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.5), transparent);
+    animation-duration: 0.6s;
+}
+
+/* Chispas */
+.fuegoSuper::after::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 200, 0, 0.9);
+    box-shadow: 
+        10px -10px rgba(255, 100, 0, 0.8), 
+        -12px 5px rgba(255, 150, 0, 0.7), 
+        7px 12px rgba(255, 120, 0, 0.6);
+    animation: sparks 1.5s infinite ease-in-out;
+}
+
+/* Animaciones */
+@keyframes superGlow {
+    from {
+        box-shadow: 0 0 15px rgba(255, 100, 0, 0.8), 
+                    0 0 25px rgba(255, 50, 0, 0.6);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 150, 0, 1), 
+                    0 0 30px rgba(255, 80, 0, 0.9);
+    }
+}
+
+@keyframes intenseFlame {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+@keyframes sparks {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-15px, 15px) scale(1.5);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(15px, -15px) scale(1);
+        opacity: 0;
+    }
+}
+
+
+

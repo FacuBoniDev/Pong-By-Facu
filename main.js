@@ -10,14 +10,27 @@ const sonidoPunto = new Audio("woosh-230554.mp3");
 sonidoPunto.volume = 0.3;
 const sonidoPuntoPerdido = new Audio("arcade-ui-15-229513.mp3");
 const sonidoEmpezar = new Audio("arcade-ui-18-229517.mp3");
+const sonidoFuego = new Audio("fire-sound-effects-224089.mp3");
+let contador = 0;
 estadoJuego = "PAUSE"
+
+function reproducirSonidoFuego() {
+    sonidoFuego.currentTime = 0;
+    sonidoFuego.play();
+
+
+    setTimeout(() => {
+        sonidoFuego.pause();
+        sonidoFuego.currentTime = 0; 
+    }, 4000);
+}
 
 class paleta{
 
     element;
 
     y = 0;
-    velocidad = 10;
+    velocidad = 12;
     movimiento;
     alto = 150;
     ancho = 15;
@@ -65,6 +78,7 @@ class paleta{
         this.freeze();
         this.y = document.body.clientHeight/2 - this.alto/2;
         this.element.style.top = this.y + "px";
+        contador = 0;
     }
 
 }
@@ -77,6 +91,8 @@ class bola{
     dy = -15;
     ancho = 20;
     movimiento;
+    velocidadAumentada = false;
+    velocidadSuper = false;
 
     constructor(){
         this.element = document.createElement("div");
@@ -101,6 +117,25 @@ class bola{
         if(!this.movimiento){
         this.movimiento = setInterval(() => {
 
+        if (contador > 8 && !this.velocidadAumentada) {
+            this.dx *= 1.2;
+            this.dy *= 1.2;
+            this.velocidadAumentada = true;
+            this.element.classList.add("fuego");
+            sonidoFuego.volume = 0.3;
+            reproducirSonidoFuego();
+        }
+
+        if(contador > 14 && !this.velocidadSuper){
+            this.dx *= 1.3;
+            this.dy *= 1.3;
+            this.velocidadSuper = true;
+            this.element.classList.remove("fuego");
+            this.element.classList.add("fuegoSuper");
+            sonidoFuego.volume = 1;
+            reproducirSonidoFuego();
+        }
+
 // movimiento izquierda a derecha
         this.x += this.dx;
 
@@ -112,7 +147,8 @@ class bola{
         this.dx = this.dx * -1;
         j1.element.classList.add("vibrate");
         j2.element.classList.remove("vibrate");
-        sonido1.play()
+        sonido1.play();
+        contador++;
     }
 
     if(this.x + this.ancho > document.body.clientWidth-j2.ancho &&
@@ -122,7 +158,8 @@ class bola{
         this.dx = this.dx * -1;
         j2.element.classList.add("vibrate");
         j1.element.classList.remove("vibrate");
-        sonido1.play()
+        sonido1.play();
+        contador++;
     }
 
 
@@ -218,6 +255,7 @@ class tablero{
         this.actualizarTexto();
         mensajeElement.classList.toggle("titilar", false);
         restartTexto.classList.add("disable");
+        contador = 0;
     }
 
 }
